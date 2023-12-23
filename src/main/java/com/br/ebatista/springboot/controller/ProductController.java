@@ -2,7 +2,6 @@ package com.br.ebatista.springboot.controller;
 
 import com.br.ebatista.springboot.dto.ProductRecordDto;
 import com.br.ebatista.springboot.model.Product;
-import com.br.ebatista.springboot.repository.ProductRepository;
 import com.br.ebatista.springboot.service.ProductService;
 import jakarta.validation.Valid;
 import org.springframework.beans.BeanUtils;
@@ -10,22 +9,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/produtos")
 public class ProductController {
     //TODO: Implementar filtros
-    //TODO: Implementar paginação
 
     @Autowired
     ProductService service;
 
-    @PostMapping("/product")
+    @PostMapping("/cadastro")
     public ResponseEntity<Product> saveProduct(@RequestBody @Valid ProductRecordDto productRecordDto) {
         var product = new Product();
         BeanUtils.copyProperties(productRecordDto, product);
@@ -34,14 +31,14 @@ public class ProductController {
                 .body(service.save(product));
     }
 
-    @GetMapping("/product")
+    @GetMapping
     public ResponseEntity<List<Product>> getAllProducts() {
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(service.getAll());
     }
 
-    @GetMapping("/product/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<?> getOneProduct(@PathVariable UUID id) {
         try {
             return ResponseEntity
@@ -54,7 +51,7 @@ public class ProductController {
         }
     }
 
-    @PutMapping("/product/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<?> updateProduct(@PathVariable UUID id,
                                     @RequestBody @Valid ProductRecordDto productRecordDto) {
         var product = new Product();
@@ -70,7 +67,7 @@ public class ProductController {
         }
     }
 
-    @DeleteMapping("/product/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteProduct(@PathVariable UUID id) {
         try {
             service.getById(id);
