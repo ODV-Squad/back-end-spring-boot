@@ -7,8 +7,6 @@ Bem-vindo ao projeto E-commerce! Este é um sistema de comércio eletrônico desenv
 - [Arquitetura](#arquitetura)
 - [Configuração](#configuração)
 - [Endpoints](#endpoints)
-- [Como Contribuir](#como-contribuir)
-- [Licença](#licença)
 
 ## Arquitetura
 
