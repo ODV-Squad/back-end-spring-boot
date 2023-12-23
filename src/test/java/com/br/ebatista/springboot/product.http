@@ -1,0 +1,29 @@
+POST http://localhost:8080/api/product
+Content-Type: application/json
+
+{
+  "name": "Laptop2",
+  "price": 8990.00
+}
+
+###
+
+GET http://localhost:8080/api/product
+Content-Type: application/json
+
+###
+GET http://localhost:8080/api/product/9caa1c96-4fd9-47fa-8592-137b683ebde5
+Content-Type: application/json
+
+###
+PUT http://localhost:8080/api/product/9caa1c96-4fd9-47fa-8592-137b683ebde5
+Content-Type: application/json
+
+{
+  "name": "Product updated",
+  "price": 5000
+}
+
+###
+DELETE http://localhost:8080/api/product/9caa1c96-4fd9-47fa-8592-137b683ebde5
+Content-Type: application/json
