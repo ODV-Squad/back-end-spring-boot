@@ -18,7 +18,6 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/api/products")
 public class ProductController {
-    //TODO: Implementar filtros
 
     @Autowired
     ProductService service;
@@ -45,7 +44,7 @@ public class ProductController {
             return ResponseEntity
                     .status(HttpStatus.OK)
                     .body(service.getById(id));
-        } catch (RuntimeException ex) { // TODO: Criar tratativa de exceção
+        } catch (RuntimeException ex) {
             return ResponseEntity
                     .status(HttpStatus.NOT_FOUND)
                     .body(Map.of("Message", "Product Not Found"));
@@ -82,7 +81,7 @@ public class ProductController {
             return ResponseEntity
                     .status(HttpStatus.OK)
                     .body(service.update(id, product));
-        } catch (RuntimeException ex) { // TODO: Criar tratativa de exceção
+        } catch (RuntimeException ex) {
             return ResponseEntity
                     .status(HttpStatus.NOT_FOUND)
                     .body(Map.of("Message", "Product Not Found"));
@@ -97,7 +96,7 @@ public class ProductController {
             return ResponseEntity
                     .status(HttpStatus.OK)
                     .body("Product successfully removed");
-        } catch (RuntimeException ex) { // TODO: Criar tratativa de exceção
+        } catch (RuntimeException ex) {
             return ResponseEntity
                     .status(HttpStatus.NOT_FOUND)
                     .body(Map.of("Message", "Product Not Found"));
