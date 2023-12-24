@@ -2,6 +2,7 @@ package com.br.ebatista.springboot.controller;
 
 import com.br.ebatista.springboot.dto.ProductRecordDto;
 import com.br.ebatista.springboot.model.Product;
+import com.br.ebatista.springboot.model.ProductCategory;
 import com.br.ebatista.springboot.service.ProductService;
 import jakarta.validation.Valid;
 import org.springframework.beans.BeanUtils;
@@ -52,17 +53,24 @@ public class ProductController {
     }
 
     @GetMapping("/featured")
-    public ResponseEntity<?> getFeaturedProduct() {
+    public ResponseEntity<List<Product>> getFeaturedProduct() {
             return ResponseEntity
                     .status(HttpStatus.OK)
                     .body(service.getFeatured());
     }
 
     @GetMapping("/offer")
-    public ResponseEntity<?> getOfferProduct() {
+    public ResponseEntity<List<Product>> getOfferProduct() {
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(service.getOffer());
+    }
+
+    @GetMapping("/categories")
+    public ResponseEntity<ProductCategory[]> getCategories() {
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(ProductCategory.values());
     }
 
     @PutMapping("/{id}")
