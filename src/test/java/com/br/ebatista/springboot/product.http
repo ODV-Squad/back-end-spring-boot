@@ -1,29 +1,47 @@
-POST http://localhost:8080/api/product
+POST http://localhost:8080/api/products/register
 Content-Type: application/json
 
 {
-  "name": "Laptop2",
-  "price": 8990.00
+  "name": "Mortadela",
+  "price": 3.95,
+  "description": "Mortandela Rezende",
+  "isFEatured": false,
+  "isOnOffer": false,
+  "category": "FOOD"
 }
 
 ###
 
-GET http://localhost:8080/api/product
+GET http://localhost:8080/api/products
 Content-Type: application/json
 
 ###
-GET http://localhost:8080/api/product/9caa1c96-4fd9-47fa-8592-137b683ebde5
+
+GET http://localhost:8080/api/products/featured
 Content-Type: application/json
 
 ###
-PUT http://localhost:8080/api/product/9caa1c96-4fd9-47fa-8592-137b683ebde5
+
+GET http://localhost:8080/api/products/offer
+Content-Type: application/json
+
+###
+GET http://localhost:8080/api/products/9caa1c96-4fd9-47fa-8592-137b683ebde5
+Content-Type: application/json
+
+###
+PUT http://localhost:8080/api/products/9caa1c96-4fd9-47fa-8592-137b683ebde5
 Content-Type: application/json
 
 {
-  "name": "Product updated",
-  "price": 5000
+  "name": "Mortadela",
+  "price": 3.95,
+  "description": "Mortandela Rezende",
+  "isFeatured": true,
+  "isOnOffer": true,
+  "category": "FOOD"
 }
 
 ###
-DELETE http://localhost:8080/api/product/9caa1c96-4fd9-47fa-8592-137b683ebde5
+DELETE http://localhost:8080/api/products/9caa1c96-4fd9-47fa-8592-137b683ebde5
 Content-Type: application/json

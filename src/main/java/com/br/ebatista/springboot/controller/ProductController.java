@@ -15,14 +15,14 @@ import java.util.Map;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/api/produtos")
+@RequestMapping("/api/products")
 public class ProductController {
     //TODO: Implementar filtros
 
     @Autowired
     ProductService service;
 
-    @PostMapping("/cadastro")
+    @PostMapping("/register")
     public ResponseEntity<Product> saveProduct(@RequestBody @Valid ProductRecordDto productRecordDto) {
         var product = new Product();
         BeanUtils.copyProperties(productRecordDto, product);
@@ -49,6 +49,20 @@ public class ProductController {
                     .status(HttpStatus.NOT_FOUND)
                     .body(Map.of("Message", "Product Not Found"));
         }
+    }
+
+    @GetMapping("/featured")
+    public ResponseEntity<?> getFeaturedProduct() {
+            return ResponseEntity
+                    .status(HttpStatus.OK)
+                    .body(service.getFeatured());
+    }
+
+    @GetMapping("/offer")
+    public ResponseEntity<?> getOfferProduct() {
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(service.getOffer());
     }
 
     @PutMapping("/{id}")
