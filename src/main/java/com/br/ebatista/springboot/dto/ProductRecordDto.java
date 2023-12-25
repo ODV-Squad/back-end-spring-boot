@@ -1,6 +1,6 @@
 package com.br.ebatista.springboot.dto;
 
-import com.br.ebatista.springboot.model.ProductCategory;
+import com.br.ebatista.springboot.domain.product.ProductCategoryEnum;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
@@ -11,5 +11,5 @@ public record ProductRecordDto(@NotBlank String name,
                                String description,
                                boolean isFeatured,
                                boolean isOnOffer,
-                               @NotNull ProductCategory category) {
+                               @NotNull ProductCategoryEnum category) {
 }
