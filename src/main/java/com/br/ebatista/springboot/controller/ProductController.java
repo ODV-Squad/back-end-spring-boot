@@ -2,6 +2,7 @@ package com.br.ebatista.springboot.controller;
 
 import com.br.ebatista.springboot.dto.ProductRecordDto;
 import com.br.ebatista.springboot.model.Product;
+import com.br.ebatista.springboot.model.ProductCategory;
 import com.br.ebatista.springboot.service.ProductService;
 import jakarta.validation.Valid;
 import org.springframework.beans.BeanUtils;
@@ -15,14 +16,13 @@ import java.util.Map;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/api/produtos")
+@RequestMapping("/api/products")
 public class ProductController {
-    //TODO: Implementar filtros
 
     @Autowired
     ProductService service;
 
-    @PostMapping("/cadastro")
+    @PostMapping("/register")
     public ResponseEntity<Product> saveProduct(@RequestBody @Valid ProductRecordDto productRecordDto) {
         var product = new Product();
         BeanUtils.copyProperties(productRecordDto, product);
@@ -44,11 +44,32 @@ public class ProductController {
             return ResponseEntity
                     .status(HttpStatus.OK)
                     .body(service.getById(id));
-        } catch (RuntimeException ex) { // TODO: Criar tratativa de exceção
+        } catch (RuntimeException ex) {
             return ResponseEntity
                     .status(HttpStatus.NOT_FOUND)
                     .body(Map.of("Message", "Product Not Found"));
         }
+    }
+
+    @GetMapping("/featured")
+    public ResponseEntity<List<Product>> getFeaturedProduct() {
+            return ResponseEntity
+                    .status(HttpStatus.OK)
+                    .body(service.getFeatured());
+    }
+
+    @GetMapping("/offer")
+    public ResponseEntity<List<Product>> getOfferProduct() {
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(service.getOffer());
+    }
+
+    @GetMapping("/categories")
+    public ResponseEntity<ProductCategory[]> getCategories() {
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(ProductCategory.values());
     }
 
     @PutMapping("/{id}")
@@ -60,7 +81,7 @@ public class ProductController {
             return ResponseEntity
                     .status(HttpStatus.OK)
                     .body(service.update(id, product));
-        } catch (RuntimeException ex) { // TODO: Criar tratativa de exceção
+        } catch (RuntimeException ex) {
             return ResponseEntity
                     .status(HttpStatus.NOT_FOUND)
                     .body(Map.of("Message", "Product Not Found"));
@@ -75,7 +96,7 @@ public class ProductController {
             return ResponseEntity
                     .status(HttpStatus.OK)
                     .body("Product successfully removed");
-        } catch (RuntimeException ex) { // TODO: Criar tratativa de exceção
+        } catch (RuntimeException ex) {
             return ResponseEntity
                     .status(HttpStatus.NOT_FOUND)
                     .body(Map.of("Message", "Product Not Found"));

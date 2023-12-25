@@ -20,4 +20,9 @@ public class Product implements Serializable {
     private UUID id;
     private String name;
     private BigDecimal price;
+    private String description;
+    private boolean isFeatured;
+    private boolean isOnOffer;
+    @Enumerated(EnumType.STRING)
+    private ProductCategory category;
 }

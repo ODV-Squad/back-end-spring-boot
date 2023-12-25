@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Service
 public class ProductService {
@@ -26,6 +27,12 @@ public class ProductService {
         return repository.findById(id).orElseThrow();
     }
 
+    public List<Product> getFeatured() {
+        return repository.findAll()
+                .stream()
+                .filter(Product::isFeatured)
+                .collect(Collectors.toList());
+    }
     public Product update(UUID id, Product product) {
         product.setId(id);
         return save(product);
@@ -33,5 +40,12 @@ public class ProductService {
 
     public void delete(UUID id) {
         repository.deleteById(id);
+    }
+
+    public List<Product> getOffer() {
+        return repository.findAll()
+                .stream()
+                .filter(Product::isOnOffer)
+                .collect(Collectors.toList());
     }
 }
