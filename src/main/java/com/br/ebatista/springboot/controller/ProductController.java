@@ -4,6 +4,7 @@ import com.br.ebatista.springboot.dto.ProductRecordDto;
 import com.br.ebatista.springboot.domain.product.Product;
 import com.br.ebatista.springboot.domain.product.ProductCategoryEnum;
 import com.br.ebatista.springboot.service.ProductService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,7 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/products")
+@Tag(name = "Product")
 public class ProductController {
 
     @Autowired
