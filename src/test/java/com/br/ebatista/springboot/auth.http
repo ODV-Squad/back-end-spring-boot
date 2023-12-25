@@ -1,0 +1,54 @@
+POST http://localhost:8080/api/auth/register
+Content-Type: application/json
+
+{
+  "login": "joao",
+  "password": "123",
+  "role": "AFFILIATE"
+}
+
+###
+
+POST http://localhost:8080/api/auth/login
+Content-Type: application/json
+
+{
+  "login": "breno",
+  "password": "123"
+}
+
+###
+
+GET http://localhost:8080/api/products/featured
+Content-Type: application/json
+
+###
+
+GET http://localhost:8080/api/products/offer
+Content-Type: application/json
+
+###
+
+GET http://localhost:8080/api/products/categories
+Content-Type: application/json
+
+###
+GET http://localhost:8080/api/products/9caa1c96-4fd9-47fa-8592-137b683ebde5
+Content-Type: application/json
+
+###
+PUT http://localhost:8080/api/products/9caa1c96-4fd9-47fa-8592-137b683ebde5
+Content-Type: application/json
+
+{
+  "name": "Mortadela",
+  "price": 3.95,
+  "description": "Mortandela Rezende",
+  "isFeatured": true,
+  "isOnOffer": true,
+  "category": "FOOD"
+}
+
+###
+DELETE http://localhost:8080/api/products/9caa1c96-4fd9-47fa-8592-137b683ebde5
+Content-Type: application/json

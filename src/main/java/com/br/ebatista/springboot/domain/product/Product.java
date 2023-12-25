@@ -1,4 +1,4 @@
-package com.br.ebatista.springboot.model;
+package com.br.ebatista.springboot.domain.product;
 
 import jakarta.persistence.*;
 import lombok.Data;
@@ -24,5 +24,5 @@ public class Product implements Serializable {
     private boolean isFeatured;
     private boolean isOnOffer;
     @Enumerated(EnumType.STRING)
-    private ProductCategory category;
+    private ProductCategoryEnum category;
 }

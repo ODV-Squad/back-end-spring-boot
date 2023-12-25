@@ -19,3 +19,7 @@ spring:
             non_contextual_creation: true
     hibernate:
       ddl-auto: update
+api:
+  security:
+    token:
+      secret: ${JWT_SECRET:my-secret-key}

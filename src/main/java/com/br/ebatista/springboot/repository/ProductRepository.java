@@ -1,6 +1,6 @@
 package com.br.ebatista.springboot.repository;
 
-import com.br.ebatista.springboot.model.Product;
+import com.br.ebatista.springboot.domain.product.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
