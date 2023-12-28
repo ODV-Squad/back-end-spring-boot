@@ -1,6 +1,7 @@
-package com.br.ebatista.springboot.domain.user;
+package com.br.odv.springboot.domain.user;
 
 public enum UserRole {
+    ADMIN("admin"),
     AFFILIATE("affiliate"),
     USER("user");
 

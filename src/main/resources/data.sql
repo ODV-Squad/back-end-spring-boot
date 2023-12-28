@@ -11,4 +11,4 @@ insert into product (id,name,price,description,is_featured,is_on_offer,category)
 values ('9caa1c96-4fd9-47fa-8592-137b683ebde5','Coquinha',8.99,'Coquinha Zero Gelada',false,true,'BEVERAGE');
 
 insert into users(id,login,password,role)
-values ('c6a2d189-c3ad-462e-b623-57942d2dbec6','odv','$2a$10$dnbW/K2jbRNbjf0kv/sbZ.Ao3jJm9gN2EtiUjQ1coLXWt8g0giW.O','AFFILIATE')
+values ('c6a2d189-c3ad-462e-b623-57942d2dbec6','odv','$2a$10$dnbW/K2jbRNbjf0kv/sbZ.Ao3jJm9gN2EtiUjQ1coLXWt8g0giW.O','ADMIN')
