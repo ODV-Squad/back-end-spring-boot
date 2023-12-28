@@ -28,7 +28,7 @@ public class ProductController {
 
     @PostMapping("/register")
     public ResponseEntity<ProductDTO> saveProduct(@AuthenticationPrincipal User user,
-                                               @RequestBody @Valid ProductDTO productDTO) {
+                                                  @RequestBody @Valid ProductDTO productDTO) {
         service.save(user, productDTO);
         return ResponseEntity
                 .status(HttpStatus.CREATED)
@@ -37,37 +37,45 @@ public class ProductController {
 
     @GetMapping
     public ResponseEntity<List<ProductDTO>> getAllProducts(@AuthenticationPrincipal User user) {
-        String userId = user.getId();
         return ResponseEntity
                 .status(HttpStatus.OK)
-                .body(service.getAll(userId));
+                .body(service.getAll(user.getId()));
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> getOneProduct(@PathVariable UUID id) {
-        try {
+    public ResponseEntity<?> getOneProduct(@AuthenticationPrincipal User user,
+                                           @PathVariable UUID id) {
+        Product product = service.getById(id);
+        ProductDTO productDTO = new ProductDTO(product.getName(),
+                product.getPrice(),
+                product.getDescription(),
+                product.isFeatured(),
+                product.isOnOffer(),
+                product.getCategory(),
+                product.getAmount());
+
+        if (user.equals(product.getUser())) {
             return ResponseEntity
                     .status(HttpStatus.OK)
-                    .body(service.getById(id));
-        } catch (RuntimeException ex) {
-            return ResponseEntity
-                    .status(HttpStatus.NOT_FOUND)
-                    .body(Map.of("Message", "Product Not Found"));
+                    .body(productDTO);
         }
+        return ResponseEntity
+                .status(HttpStatus.NOT_FOUND)
+                .body(Map.of("Message", "Product Not Found"));
     }
 
     @GetMapping("/featured")
-    public ResponseEntity<List<Product>> getFeaturedProduct() {
-            return ResponseEntity
-                    .status(HttpStatus.OK)
-                    .body(service.getFeatured());
+    public ResponseEntity<List<ProductDTO>> getFeaturedProduct(@AuthenticationPrincipal User user) {
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(service.getFeatured(user.getId()));
     }
 
     @GetMapping("/offer")
-    public ResponseEntity<List<Product>> getOfferProduct() {
+    public ResponseEntity<List<ProductDTO>> getOfferProduct(@AuthenticationPrincipal User user) {
         return ResponseEntity
                 .status(HttpStatus.OK)
-                .body(service.getOffer());
+                .body(service.getOffer(user.getId()));
     }
 
     @GetMapping("/categories")
@@ -77,21 +85,22 @@ public class ProductController {
                 .body(ProductCategoryEnum.values());
     }
 
-//    @PutMapping("/{id}")
-//    public ResponseEntity<?> updateProduct(@PathVariable UUID id,
-//                                    @RequestBody @Valid ProductDTO productRecordDto) {
-//        var product = new Product();
-//        BeanUtils.copyProperties(productRecordDto, product);
-//        try {
-//            return ResponseEntity
-//                    .status(HttpStatus.OK)
-//                    .body(service.update(id, product));
-//        } catch (RuntimeException ex) {
-//            return ResponseEntity
-//                    .status(HttpStatus.NOT_FOUND)
-//                    .body(Map.of("Message", "Product Not Found"));
-//        }
-//    }
+    @PutMapping("/{id}")
+    public ResponseEntity<?> updateProduct(@AuthenticationPrincipal User user,
+                                           @PathVariable UUID id,
+                                           @RequestBody @Valid ProductDTO productDTO) {
+
+        Product product = service.update(user, id, productDTO);
+
+        if (user.equals(product.getUser())) {
+            return ResponseEntity
+                    .status(HttpStatus.OK)
+                    .body(productDTO);
+        }
+        return ResponseEntity
+                .status(HttpStatus.NOT_FOUND)
+                .body(Map.of("Message", "Product Not Found"));
+    }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteProduct(@PathVariable UUID id) {

@@ -33,25 +33,28 @@ public class ProductService {
         return repository.findById(id).orElseThrow();
     }
 
-    public List<Product> getFeatured() {
-        return repository.findAll()
+    public List<ProductDTO> getFeatured(String userId) {
+        return repository.findByUserId(userId)
                 .stream()
-                .filter(Product::isFeatured)
+                .filter(ProductDTO::isFeatured)
                 .collect(Collectors.toList());
     }
-//    public Product update(User user, UUID id, Product product) {
-//        product.setId(id);
-//        return save(user, product);
-//    }
+    public Product update(User user, UUID id, ProductDTO productDTO) {
+        Product product = new Product();
+        BeanUtils.copyProperties(productDTO, product);
+        product.setUser(user);
+        product.setId(id);
+        return repository.save(product);
+    }
 
     public void delete(UUID id) {
         repository.deleteById(id);
     }
 
-    public List<Product> getOffer() {
-        return repository.findAll()
+    public List<ProductDTO> getOffer(String userId) {
+        return repository.findByUserId(userId)
                 .stream()
-                .filter(Product::isOnOffer)
+                .filter(ProductDTO::isOnOffer)
                 .collect(Collectors.toList());
     }
 }
