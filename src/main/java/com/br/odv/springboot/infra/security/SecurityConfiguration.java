@@ -31,7 +31,7 @@ public class SecurityConfiguration {
                         .requestMatchers(AUTH_WHITELIST).permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/auth/login").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/auth/register").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.POST, "/api/products/register").hasRole("AFFILIATE")
+                        .requestMatchers(HttpMethod.POST, "/api/products/register").hasAnyRole("ADMIN", "AFFILIATE")
                         .anyRequest().authenticated())
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();

@@ -12,8 +12,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
         "\"password\": \"123\" }",
         version = "1.0"))
 public class SpringbootApplication {
-    // TESTE INTEGRACAO GITHUB
-
     public static void main(String[] args) {
         SpringApplication.run(SpringbootApplication.class, args);
     }
