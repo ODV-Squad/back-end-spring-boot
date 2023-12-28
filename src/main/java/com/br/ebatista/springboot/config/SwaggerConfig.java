@@ -25,10 +25,10 @@ public class SwaggerConfig {
                         addList("Bearer Authentication"))
                 .components(new Components().addSecuritySchemes
                         ("Bearer Authentication", createAPIKeyScheme()))
-                .info(new Info().title("My REST API")
-                        .description("Some custom description of API.")
-                        .version("1.0").contact(new Contact().name("Sallo Szrajbman")
-                                .email( "www.baeldung.com").url("salloszraj@gmail.com"))
+                .info(new Info().title("ODV REST API")
+                        .description("E-commerce ODV")
+                        .version("1.0").contact(new Contact().name("ODV")
+                                .email( "www.baeldung.com").url("odv.squad@gmail.com"))
                         .license(new License().name("License of API")
                                 .url("API license URL")));
     }
