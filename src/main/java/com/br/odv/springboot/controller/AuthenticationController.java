@@ -1,9 +1,9 @@
 package com.br.odv.springboot.controller;
 
 import com.br.odv.springboot.domain.user.User;
-import com.br.odv.springboot.dto.AuthenticationRecordDto;
-import com.br.odv.springboot.dto.LoginResponseRecordDto;
-import com.br.odv.springboot.dto.RegisterRecordDto;
+import com.br.odv.springboot.dto.AuthenticationDTO;
+import com.br.odv.springboot.dto.LoginResponseDTO;
+import com.br.odv.springboot.dto.RegisterDTO;
 import com.br.odv.springboot.infra.security.TokenService;
 import com.br.odv.springboot.repository.UserRepository;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -34,16 +34,16 @@ public class AuthenticationController {
     private TokenService tokenService;
 
     @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody @Valid AuthenticationRecordDto data) {
+    public ResponseEntity<?> login(@RequestBody @Valid AuthenticationDTO data) {
         var usernamePassword = new UsernamePasswordAuthenticationToken(data.login(), data.password());
         var auth = this.authenticationManager.authenticate(usernamePassword);
 
         var token = tokenService.generateToken((User) auth.getPrincipal());
-        return ResponseEntity.status(HttpStatus.OK).body(new LoginResponseRecordDto(token));
+        return ResponseEntity.status(HttpStatus.OK).body(new LoginResponseDTO(token));
     }
 
     @PostMapping("/register")
-    public ResponseEntity<?> register(@RequestBody @Valid RegisterRecordDto data) {
+    public ResponseEntity<?> register(@RequestBody @Valid RegisterDTO data) {
         if (this.repository.findByLogin(data.login()) != null) return ResponseEntity.badRequest().build();
 
         String encryptedPassword = new BCryptPasswordEncoder().encode(data.password());

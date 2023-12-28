@@ -1,5 +1,6 @@
 package com.br.odv.springboot.domain.product;
 
+import com.br.odv.springboot.domain.user.User;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -26,4 +27,6 @@ public class Product implements Serializable {
     @Enumerated(EnumType.STRING)
     private ProductCategoryEnum category;
     private int amount;
+    @ManyToOne @JoinColumn(name = "user_id")
+    private User user;
 }

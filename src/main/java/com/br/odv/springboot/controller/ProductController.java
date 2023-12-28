@@ -1,6 +1,7 @@
 package com.br.odv.springboot.controller;
 
-import com.br.odv.springboot.dto.ProductRecordDto;
+import com.br.odv.springboot.domain.user.User;
+import com.br.odv.springboot.dto.ProductDTO;
 import com.br.odv.springboot.domain.product.Product;
 import com.br.odv.springboot.domain.product.ProductCategoryEnum;
 import com.br.odv.springboot.service.ProductService;
@@ -10,6 +11,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -25,19 +27,20 @@ public class ProductController {
     ProductService service;
 
     @PostMapping("/register")
-    public ResponseEntity<Product> saveProduct(@RequestBody @Valid ProductRecordDto productRecordDto) {
-        var product = new Product();
-        BeanUtils.copyProperties(productRecordDto, product);
+    public ResponseEntity<ProductDTO> saveProduct(@AuthenticationPrincipal User user,
+                                               @RequestBody @Valid ProductDTO productDTO) {
+        service.save(user, productDTO);
         return ResponseEntity
                 .status(HttpStatus.CREATED)
-                .body(service.save(product));
+                .body(productDTO);
     }
 
     @GetMapping
-    public ResponseEntity<List<Product>> getAllProducts() {
+    public ResponseEntity<List<ProductDTO>> getAllProducts(@AuthenticationPrincipal User user) {
+        String userId = user.getId();
         return ResponseEntity
                 .status(HttpStatus.OK)
-                .body(service.getAll());
+                .body(service.getAll(userId));
     }
 
     @GetMapping("/{id}")
@@ -74,21 +77,21 @@ public class ProductController {
                 .body(ProductCategoryEnum.values());
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<?> updateProduct(@PathVariable UUID id,
-                                    @RequestBody @Valid ProductRecordDto productRecordDto) {
-        var product = new Product();
-        BeanUtils.copyProperties(productRecordDto, product);
-        try {
-            return ResponseEntity
-                    .status(HttpStatus.OK)
-                    .body(service.update(id, product));
-        } catch (RuntimeException ex) {
-            return ResponseEntity
-                    .status(HttpStatus.NOT_FOUND)
-                    .body(Map.of("Message", "Product Not Found"));
-        }
-    }
+//    @PutMapping("/{id}")
+//    public ResponseEntity<?> updateProduct(@PathVariable UUID id,
+//                                    @RequestBody @Valid ProductDTO productRecordDto) {
+//        var product = new Product();
+//        BeanUtils.copyProperties(productRecordDto, product);
+//        try {
+//            return ResponseEntity
+//                    .status(HttpStatus.OK)
+//                    .body(service.update(id, product));
+//        } catch (RuntimeException ex) {
+//            return ResponseEntity
+//                    .status(HttpStatus.NOT_FOUND)
+//                    .body(Map.of("Message", "Product Not Found"));
+//        }
+//    }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteProduct(@PathVariable UUID id) {
