@@ -1,4 +1,4 @@
-package com.br.ebatista.springboot.config;
+package com.br.odv.springboot.config;
 
 import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.OpenAPI;

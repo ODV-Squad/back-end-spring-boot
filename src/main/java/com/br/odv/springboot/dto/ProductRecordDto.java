@@ -1,6 +1,6 @@
-package com.br.ebatista.springboot.dto;
+package com.br.odv.springboot.dto;
 
-import com.br.ebatista.springboot.domain.product.ProductCategoryEnum;
+import com.br.odv.springboot.domain.product.ProductCategoryEnum;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 

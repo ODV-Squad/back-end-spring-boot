@@ -1,6 +1,6 @@
-package com.br.ebatista.springboot.repository;
+package com.br.odv.springboot.repository;
 
-import com.br.ebatista.springboot.domain.user.User;
+import com.br.odv.springboot.domain.user.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 

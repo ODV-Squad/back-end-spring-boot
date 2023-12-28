@@ -1,6 +1,6 @@
-package com.br.ebatista.springboot.service;
+package com.br.odv.springboot.service;
 
-import com.br.ebatista.springboot.repository.UserRepository;
+import com.br.odv.springboot.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

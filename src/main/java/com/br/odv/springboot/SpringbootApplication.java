@@ -1,4 +1,4 @@
-package com.br.ebatista.springboot;
+package com.br.odv.springboot;
 
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.info.Info;

@@ -1,7 +1,7 @@
-package com.br.ebatista.springboot.service;
+package com.br.odv.springboot.service;
 
-import com.br.ebatista.springboot.domain.product.Product;
-import com.br.ebatista.springboot.repository.ProductRepository;
+import com.br.odv.springboot.domain.product.Product;
+import com.br.odv.springboot.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

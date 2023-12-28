@@ -1,4 +1,4 @@
-package com.br.ebatista.springboot.domain.user;
+package com.br.odv.springboot.domain.user;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

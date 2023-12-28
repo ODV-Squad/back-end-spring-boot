@@ -1,4 +1,4 @@
-package com.br.ebatista.springboot.domain.product;
+package com.br.odv.springboot.domain.product;
 
 import jakarta.persistence.*;
 import lombok.Data;

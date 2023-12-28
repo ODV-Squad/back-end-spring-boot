@@ -1,11 +1,11 @@
-package com.br.ebatista.springboot.controller;
+package com.br.odv.springboot.controller;
 
-import com.br.ebatista.springboot.domain.user.User;
-import com.br.ebatista.springboot.dto.AuthenticationRecordDto;
-import com.br.ebatista.springboot.dto.LoginResponseRecordDto;
-import com.br.ebatista.springboot.dto.RegisterRecordDto;
-import com.br.ebatista.springboot.infra.security.TokenService;
-import com.br.ebatista.springboot.repository.UserRepository;
+import com.br.odv.springboot.domain.user.User;
+import com.br.odv.springboot.dto.AuthenticationRecordDto;
+import com.br.odv.springboot.dto.LoginResponseRecordDto;
+import com.br.odv.springboot.dto.RegisterRecordDto;
+import com.br.odv.springboot.infra.security.TokenService;
+import com.br.odv.springboot.repository.UserRepository;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;

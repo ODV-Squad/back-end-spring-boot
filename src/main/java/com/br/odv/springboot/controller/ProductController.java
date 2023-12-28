@@ -1,9 +1,9 @@
-package com.br.ebatista.springboot.controller;
+package com.br.odv.springboot.controller;
 
-import com.br.ebatista.springboot.dto.ProductRecordDto;
-import com.br.ebatista.springboot.domain.product.Product;
-import com.br.ebatista.springboot.domain.product.ProductCategoryEnum;
-import com.br.ebatista.springboot.service.ProductService;
+import com.br.odv.springboot.dto.ProductRecordDto;
+import com.br.odv.springboot.domain.product.Product;
+import com.br.odv.springboot.domain.product.ProductCategoryEnum;
+import com.br.odv.springboot.service.ProductService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.beans.BeanUtils;

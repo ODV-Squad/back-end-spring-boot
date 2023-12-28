@@ -1,6 +1,6 @@
-package com.br.ebatista.springboot.infra.security;
+package com.br.odv.springboot.infra.security;
 
-import com.br.ebatista.springboot.repository.UserRepository;
+import com.br.odv.springboot.repository.UserRepository;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
