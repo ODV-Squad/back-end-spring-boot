@@ -11,5 +11,6 @@ public record ProductRecordDto(@NotBlank String name,
                                String description,
                                boolean isFeatured,
                                boolean isOnOffer,
-                               @NotNull ProductCategoryEnum category) {
+                               @NotNull ProductCategoryEnum category,
+                               int amount) {
 }

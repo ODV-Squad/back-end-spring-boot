@@ -25,4 +25,5 @@ public class Product implements Serializable {
     private boolean isOnOffer;
     @Enumerated(EnumType.STRING)
     private ProductCategoryEnum category;
+    private int amount;
 }
