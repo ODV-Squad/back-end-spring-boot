@@ -29,7 +29,7 @@ public class ProductService {
         return repository.findByUserId(userId);
     }
 
-    public Product getById(UUID id) {
+    public Product getById(String id) {
         return repository.findById(id).orElseThrow();
     }
 
@@ -39,15 +39,12 @@ public class ProductService {
                 .filter(ProductDTO::isFeatured)
                 .collect(Collectors.toList());
     }
-    public Product update(User user, UUID id, ProductDTO productDTO) {
-        Product product = new Product();
-        BeanUtils.copyProperties(productDTO, product);
-        product.setUser(user);
+    public Product update(String id, Product product) {
         product.setId(id);
         return repository.save(product);
     }
 
-    public void delete(UUID id) {
+    public void delete(String id) {
         repository.deleteById(id);
     }
 

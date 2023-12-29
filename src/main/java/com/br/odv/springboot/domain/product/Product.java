@@ -3,6 +3,7 @@ package com.br.odv.springboot.domain.product;
 import com.br.odv.springboot.domain.user.User;
 import jakarta.persistence.*;
 import lombok.Data;
+import org.hibernate.annotations.Type;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -17,8 +18,8 @@ public class Product implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id()
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID id;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private String id;
     private String name;
     private BigDecimal price;
     private String description;

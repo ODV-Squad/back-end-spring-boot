@@ -44,7 +44,7 @@ public class ProductController {
 
     @GetMapping("/{id}")
     public ResponseEntity<?> getOneProduct(@AuthenticationPrincipal User user,
-                                           @PathVariable UUID id) {
+                                           @PathVariable String id) {
         Product product = service.getById(id);
         ProductDTO productDTO = new ProductDTO(product.getName(),
                 product.getPrice(),
@@ -87,12 +87,12 @@ public class ProductController {
 
     @PutMapping("/{id}")
     public ResponseEntity<?> updateProduct(@AuthenticationPrincipal User user,
-                                           @PathVariable UUID id,
+                                           @PathVariable String id,
                                            @RequestBody @Valid ProductDTO productDTO) {
 
-        Product product = service.update(user, id, productDTO);
-
+        Product product = service.getById(id);
         if (user.equals(product.getUser())) {
+            service.update(id, product);
             return ResponseEntity
                     .status(HttpStatus.OK)
                     .body(productDTO);
@@ -103,17 +103,17 @@ public class ProductController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteProduct(@PathVariable UUID id) {
-        try {
-            service.getById(id);
+    public ResponseEntity<?> deleteProduct(@AuthenticationPrincipal User user,
+                                           @PathVariable String id) {
+        Product product = service.getById(id);
+        if (user.equals(product.getUser())) {
             service.delete(id);
             return ResponseEntity
                     .status(HttpStatus.OK)
                     .body("Product successfully removed");
-        } catch (RuntimeException ex) {
+        }
             return ResponseEntity
                     .status(HttpStatus.NOT_FOUND)
                     .body(Map.of("Message", "Product Not Found"));
-        }
     }
 }
