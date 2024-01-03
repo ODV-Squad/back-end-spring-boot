@@ -1,0 +1,25 @@
+spring:
+  application:
+    name:
+  datasource:
+    url: jdbc:mysql://database-1.c7cc0ucs4lg5.us-east-2.rds.amazonaws.com:3306/odv-dev?createDatabaseIfNotExist=true
+    username: admin
+    password: osdeverdade
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+        show_sql: true
+        format_sql: true
+        jdbc:
+          lob:
+            non_contextual_creation: true
+    open-in-view: true
+    show-sql: true
+    defer-datasource-initialization: true
+api:
+  security:
+    token:
+      secret: ${JWT_SECRET:my-secret-key}

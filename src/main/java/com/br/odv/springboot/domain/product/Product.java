@@ -2,7 +2,10 @@ package com.br.odv.springboot.domain.product;
 
 import com.br.odv.springboot.domain.user.User;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Type;
 
 import java.io.Serial;
@@ -13,6 +16,9 @@ import java.util.UUID;
 @Entity
 @Table
 @Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Product implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
